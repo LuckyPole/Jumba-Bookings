@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lucky | Online Booking</title>
+    <meta name="description"
+          content="Choose a service and book an appointment online.">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar container">
+            <a class="logo" href="#home">Lucky Online Booking<span>.</span></a>
+
+            <a class="nav-link" href="#booking">Book an Appointment</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-content">
+                <p class="eyebrow">SIMPLE. CONVENIENT. ONLINE.</p>
+                <h1>Book your next appointment with ease.</h1>
+                <p>
+                    Choose the service you need, select a suitable time,
+                    and reserve your appointment in minutes.
+                </p>
+                <a class="button primary-button" href="#booking">
+                    Book Now
+                </a>
+            </div>
+        </section>
+
+        <section class="section container" id="services">
+            <div class="section-heading">
+                <p class="eyebrow">OUR SERVICES</p>
+                <h2>What would you like to book?</h2>
+                <p>Select a service to begin your booking.</p>
+            </div>
+
+            <div class="service-grid">
+                <button class="service-card selected"
+                        type="button"
+                        data-service="Consultation"
+                        data-price="1500">
+                    <span class="service-icon">01</span>
+                    <h3>Consultation</h3>
+                    <p>Discuss your needs with our team.</p>
+                    <strong>KSh 1,500</strong>
+                </button>
+
+                <button class="service-card"
+                        type="button"
+                        data-service="Professional Service"
+                        data-price="2500">
+                    <span class="service-icon">02</span>
+                    <h3>Professional Service</h3>
+                    <p>Receive dedicated professional support.</p>
+                    <strong>KSh 2,500</strong>
+                </button>
+
+                <button class="service-card"
+                        type="button"
+                        data-service="Premium Package"
+                        data-price="4000">
+                    <span class="service-icon">03</span>
+                    <h3>Premium Package</h3>
+                    <p>Choose a more comprehensive service.</p>
+                    <strong>KSh 4,000</strong>
+                </button>
+            </div>
+        </section>
+
+        <section class="section booking-section" id="booking">
+            <div class="container booking-layout">
+                <div class="booking-intro">
+                    <p class="eyebrow">RESERVE YOUR SLOT</p>
+                    <h2>Make a Booking</h2>
+                    <p>
+                        Complete your details, select a date, and choose
+                        an available appointment time.
+                    </p>
+
+                    <div class="booking-note">
+                        <strong>Booking information</strong>
+                        <p>Working days: Monday to Saturday</p>
+                        <p>Hours: 9:00 AM to 4:00 PM</p>
+                        <p>Payment: Not required in this demo</p>
+                    </div>
+                </div>
+
+                <form id="bookingForm" class="booking-form">
+                    <div class="form-group">
+                        <label for="service">Selected Service</label>
+                        <select id="service" name="service" required>
+                            <option value="Consultation">
+                                Consultation — KSh 1,500
+                            </option>
+                            <option value="Professional Service">
+                                Professional Service — KSh 2,500
+                            </option>
+                            <option value="Premium Package">
+                                Premium Package — KSh 4,000
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerName">Full Name</label>
+                        <input id="customerName"
+                               name="customerName"
+                               type="text"
+                               placeholder="Enter your full name"
+                               autocomplete="name"
+                               minlength="2"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerEmail">Email Address</label>
+                        <input id="customerEmail"
+                               name="customerEmail"
+                               type="email"
+                               placeholder="you@example.com"
+                               autocomplete="email"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerPhone">Phone Number</label>
+                        <input id="customerPhone"
+                               name="customerPhone"
+                               type="tel"
+                               placeholder="Enter your phone number"
+                               autocomplete="tel"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookingDate">Appointment Date</label>
+                        <input id="bookingDate"
+                               name="bookingDate"
+                               type="date"
+                               required>
+                        <small id="dateHelp">
+                            Select a future Monday to Saturday.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="field-label">Available Times</span>
+                        <p class="muted">
+                            Select one appointment time.
+                        </p>
+                        <div id="timeSlots" class="time-grid"></div>
+                        <input type="hidden"
+                               id="selectedTime"
+                               name="selectedTime"
+                               required>
+                    </div>
+
+                    <div class="booking-summary">
+                        <span>Selected service</span>
+                        <strong id="summaryService">Consultation</strong>
+
+                        <span>Service price</span>
+                        <strong id="summaryPrice">KSh 1,500</strong>
+
+                        <span>Appointment</span>
+                        <strong id="summaryDate">Choose a date</strong>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Additional Notes (Optional)</label>
+                        <textarea id="notes"
+                                  name="notes"
+                                  rows="3"
+                                  placeholder="Any special requests?"></textarea>
+                    </div>
+
+                    <button class="button primary-button submit-button"
+                            type="submit">
+                        Confirm Booking
+                    </button>
+
+                    <p id="formStatus" class="form-status"
+                       role="status" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+
+        <section class="section container" id="confirmation"
+                 hidden>
+            <div class="confirmation-card">
+                <div class="success-icon" aria-hidden="true">✓</div>
+                <h2>Booking Saved!</h2>
+                <p id="confirmationDetails"></p>
+                <p class="muted">
+                    This is a demonstration booking saved in this browser.
+                    It is not a confirmed server-side reservation.
+                </p>
+                <button type="button" id="newBooking"
+                        class="button primary-button">
+                    Make Another Booking
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>
+                &copy; <span id="currentYear"></span> BookEase.
+                Learning project.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
